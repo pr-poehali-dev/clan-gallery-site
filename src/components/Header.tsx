@@ -4,34 +4,43 @@ import Icon from "@/components/ui/icon";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: "smooth",
+    });
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
             <Icon name="Shield" className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">Клан</span>
+            <span className="text-xl font-bold text-foreground">
+              Клан Воины
+            </span>
           </div>
 
           <nav className="hidden md:flex space-x-6">
-            <a
-              href="#home"
-              className="text-foreground hover:text-primary transition-colors"
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-foreground hover:text-primary transition-colors duration-200"
             >
               Главная
-            </a>
-            <a
-              href="#gallery"
-              className="text-foreground hover:text-primary transition-colors"
+            </button>
+            <button
+              onClick={() => scrollToSection("gallery")}
+              className="text-primary font-semibold hover:text-primary/80 transition-colors duration-200"
             >
               Галерея
-            </a>
-            <a
-              href="#about"
-              className="text-foreground hover:text-primary transition-colors"
+            </button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="text-foreground hover:text-primary transition-colors duration-200"
             >
               О нас
-            </a>
+            </button>
           </nav>
 
           <button
@@ -43,26 +52,26 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden pb-4">
+          <div className="md:hidden pb-4 animate-fade-in">
             <nav className="flex flex-col space-y-2">
-              <a
-                href="#home"
-                className="text-foreground hover:text-primary transition-colors py-2"
+              <button
+                onClick={() => scrollToSection("home")}
+                className="text-foreground hover:text-primary transition-colors py-2 text-left"
               >
                 Главная
-              </a>
-              <a
-                href="#gallery"
-                className="text-foreground hover:text-primary transition-colors py-2"
+              </button>
+              <button
+                onClick={() => scrollToSection("gallery")}
+                className="text-primary font-semibold hover:text-primary/80 transition-colors py-2 text-left"
               >
                 Галерея
-              </a>
-              <a
-                href="#about"
-                className="text-foreground hover:text-primary transition-colors py-2"
+              </button>
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-foreground hover:text-primary transition-colors py-2 text-left"
               >
                 О нас
-              </a>
+              </button>
             </nav>
           </div>
         )}
